@@ -76,7 +76,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <AdditionalIncludeDirectories>$(ProjectDir)src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
@@ -93,6 +93,9 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <AdditionalIncludeDirectories>$(ProjectDir)src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -107,7 +110,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <AdditionalIncludeDirectories>$(ProjectDir)src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
@@ -124,6 +127,9 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <AdditionalIncludeDirectories>$(ProjectDir)src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -133,23 +139,29 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\interpreter\context\CContext\Context.cpp" />
+    <ClCompile Include="src\interpreter\expression\CExpression\BaseExpression.cpp" />
+    <ClCompile Include="src\interpreter\expression\CExpression\literal\LiteralExpression.cpp" />
+    <ClCompile Include="src\interpreter\expression\CExpression\write\WriteExpression.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\pch.cpp" />
-    <ClCompile Include="src\Reader\Reader.cpp" />
-    <ClCompile Include="test.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Lexer.h" />
-    <ClInclude Include="src\common.h" />
-    <ClInclude Include="src\Methods\IdList\IdList.h" />
-    <ClInclude Include="src\Methods\Read\read.h" />
-    <ClInclude Include="src\Methods\Write\WriteFn.h" />
+    <ClInclude Include="src\common\string\util.hpp" />
+    <ClInclude Include="src\interpreter\common_interpreter.h" />
+    <ClInclude Include="src\interpreter\context\CContext\Context.h" />
+    <ClInclude Include="src\interpreter\context\IContext_fwd.h" />
+    <ClInclude Include="src\interpreter\context\IContext.h" />
+    <ClInclude Include="src\interpreter\expression\CExpression\BaseExpression.h" />
+    <ClInclude Include="src\interpreter\expression\CExpression\literal\LiteralExpression.h" />
+    <ClInclude Include="src\interpreter\expression\CExpression\write\WriteExpression.h" />
+    <ClInclude Include="src\interpreter\expression\IExpression_fwd.h" />
+    <ClInclude Include="src\interpreter\expression\IExpression.h" />
+    <ClInclude Include="src\parser\common_parser.h" />
+    <ClInclude Include="src\parser\IParser.h" />
+    <ClInclude Include="src\parser\IParser_fwd.h" />
+    <ClInclude Include="src\parser\lexeme\Lexeme.h" />
     <ClInclude Include="src\pch.h" />
-    <ClInclude Include="src\Reader\Reader.h" />
-    <ClInclude Include="src\Tokens\Tokens.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="rules.md" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
