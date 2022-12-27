@@ -135,9 +135,21 @@
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\pch.cpp" />
+    <ClCompile Include="src\Reader\Reader.cpp" />
+    <ClCompile Include="test.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Lexer.h" />
+    <ClInclude Include="src\common.h" />
+    <ClInclude Include="src\Methods\IdList\IdList.h" />
+    <ClInclude Include="src\Methods\Read\read.h" />
+    <ClInclude Include="src\Methods\Write\WriteFn.h" />
     <ClInclude Include="src\pch.h" />
+    <ClInclude Include="src\Reader\Reader.h" />
+    <ClInclude Include="src\Tokens\Tokens.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="rules.md" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
