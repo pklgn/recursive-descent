@@ -21,10 +21,16 @@
     <ClCompile Include="src\pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="test.cpp">
+    <ClCompile Include="src\interpreter\expression\CExpression\BaseExpression.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Reader\Reader.cpp">
+    <ClCompile Include="src\interpreter\expression\CExpression\literal\LiteralExpression.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\interpreter\expression\CExpression\write\WriteExpression.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\interpreter\context\CContext\Context.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -32,29 +38,47 @@
     <ClInclude Include="src\pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Tokens\Tokens.h">
+    <ClInclude Include="src\interpreter\expression\IExpression_fwd.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Methods\IdList\IdList.h">
+    <ClInclude Include="src\interpreter\expression\IExpression.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Methods\Read\read.h">
+    <ClInclude Include="src\interpreter\context\IContext.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\common.h">
+    <ClInclude Include="src\interpreter\context\IContext_fwd.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Reader\Reader.h">
+    <ClInclude Include="src\interpreter\expression\CExpression\BaseExpression.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Methods\Write\WriteFn.h">
+    <ClInclude Include="src\interpreter\expression\CExpression\literal\LiteralExpression.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Lexer.h">
+    <ClInclude Include="src\interpreter\expression\CExpression\write\WriteExpression.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="rules.md" />
+    <ClInclude Include="src\interpreter\context\CContext\Context.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\interpreter\common_interpreter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\parser\IParser_fwd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\parser\IParser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\parser\common_parser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\parser\lexeme\Lexeme.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\common\string\util.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
