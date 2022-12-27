@@ -147,7 +147,16 @@
     <ClInclude Include="src\parser\common_parser.h" />
     <ClInclude Include="src\parser\IParser.h" />
     <ClInclude Include="src\parser\IParser_fwd.h" />
-    <ClInclude Include="src\parser\lexeme\Lexeme.h" />
+    <ClInclude Include="src\parser\lexeme\CLexeme\CLexeme.hpp" />
+    <ClInclude Include="src\parser\lexeme\exception\ILexemeException.h" />
+    <ClInclude Include="src\parser\lexeme\exception\CException\LexemeException.hpp" />
+    <ClInclude Include="src\parser\lexeme\token\all.h" />
+    <ClInclude Include="src\parser\lexeme\token\BaseToken.h" />
+    <ClInclude Include="src\parser\lexeme\token\delimeter\TokenDelimeter.h" />
+    <ClInclude Include="src\parser\lexeme\token\enum\TokenEnum.hpp" />
+    <ClInclude Include="src\parser\lexeme\token\identifier\TokenIdentifier.h" />
+    <ClInclude Include="src\parser\lexeme\token\keyword\TokenKeyword.h" />
+    <ClInclude Include="src\parser\lexeme\token\type\TokenType.h" />
     <ClInclude Include="src\pch.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
