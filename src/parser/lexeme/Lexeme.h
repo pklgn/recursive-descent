@@ -211,7 +211,7 @@ public:
 	using Lexeme = common::Lexeme;
 
 	// TODO: move to cpp (remove inline?)
-	static inline std::string GetTokenType() const
+	static inline std::string GetTokenType()
 	{
 		if constexpr (std::is_same_v<T, TokenIdentificatorId>)
 		{

@@ -139,24 +139,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\interpreter\context\CContext\Context.cpp" />
-    <ClCompile Include="src\interpreter\expression\CExpression\BaseExpression.cpp" />
-    <ClCompile Include="src\interpreter\expression\CExpression\literal\LiteralExpression.cpp" />
-    <ClCompile Include="src\interpreter\expression\CExpression\write\WriteExpression.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\pch.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\common\string\util.hpp" />
-    <ClInclude Include="src\interpreter\common_interpreter.h" />
-    <ClInclude Include="src\interpreter\context\CContext\Context.h" />
-    <ClInclude Include="src\interpreter\context\IContext_fwd.h" />
-    <ClInclude Include="src\interpreter\context\IContext.h" />
-    <ClInclude Include="src\interpreter\expression\CExpression\BaseExpression.h" />
-    <ClInclude Include="src\interpreter\expression\CExpression\literal\LiteralExpression.h" />
-    <ClInclude Include="src\interpreter\expression\CExpression\write\WriteExpression.h" />
-    <ClInclude Include="src\interpreter\expression\IExpression_fwd.h" />
-    <ClInclude Include="src\interpreter\expression\IExpression.h" />
     <ClInclude Include="src\parser\common_parser.h" />
     <ClInclude Include="src\parser\IParser.h" />
     <ClInclude Include="src\parser\IParser_fwd.h" />
