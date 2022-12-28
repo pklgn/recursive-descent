@@ -37,3 +37,5 @@ BEGIN
     WRITE(id, id, id);
 END
 ```
+
+![LifeTime диаграмма](https://lh4.googleusercontent.com/XN4k217ad4BHo25yIuq00NQNBSC9H6wxWqXmQpMJS4ehYcdBf0sN8ThixR0ouJL8bmA=w2400)
