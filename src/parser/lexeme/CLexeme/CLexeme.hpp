@@ -4,7 +4,6 @@
 
 #include "parser/common_parser.h"
 
-// #include "../token/BaseToken.h"
 #include "../token/all.h"
 #include "../token/enum/TokenEnum.hpp"
 
@@ -29,6 +28,7 @@ private:
 	Lexeme m_lexeme = Lexeme{};
 };
 
+// TODO: move to other place
 template <typename T>
 inline ::std::string parser::lexeme::CLexeme<T>::GetTokenType()
 {
