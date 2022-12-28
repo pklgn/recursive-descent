@@ -140,10 +140,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\methods\Methods.cpp" />
     <ClCompile Include="src\pch.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\common\constants\Lexeme.h" />
     <ClInclude Include="src\common\string\util.hpp" />
+    <ClInclude Include="src\common\types\BasicTypes.h" />
+    <ClInclude Include="src\common\types\MetaTypes.h" />
+    <ClInclude Include="src\methods\Methods.h" />
     <ClInclude Include="src\parser\common_parser.h" />
     <ClInclude Include="src\parser\IParser.h" />
     <ClInclude Include="src\parser\IParser_fwd.h" />
