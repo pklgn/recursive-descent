@@ -13,8 +13,10 @@
 <TYPE>   -> int	| float | bool | string
 <ST>     -> <READ> | <WRITE> | <ASSIGN>
 <ASSIGN> -> id := <EXP>;
-<EXP>    -> <EXP> + <T> | <T>
-<T>      -> <T> * <F> | <F>
+<EXP> -> <T> <C>
+<C> -> E | + <T> <C>
+<T> -> <F> <D>
+<D> -> E| * <F> <D>
 <F>      -> -<F> | (<EXP>) | id | num
 <READ>   -> READ(<IDLIST>);
 <WRITE>  -> WRITE(<IDLIST>);
