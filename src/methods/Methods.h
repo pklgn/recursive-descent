@@ -24,6 +24,7 @@ struct Methods
 	static bool F(std::istream&);
 
 	static size_t GetLine();
+	static std::string GetLexeme();
 
 private:
 	static void PrintMismatchError(LexemeEnum lexemeEnum);
@@ -31,4 +32,5 @@ private:
 	static void SkipWhitespaces(std::istream& in);
 	inline static size_t m_line = 1;
 	inline static size_t m_col = 0;
+	inline static std::string m_errorLexeme;
 };

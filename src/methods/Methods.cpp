@@ -16,8 +16,7 @@ size_t GetLexemeLength(LexemeEnum lexeme)
 
 void Methods::PrintMismatchError(LexemeEnum lexemeEnum)
 {
-	std::cout << m_line << " : " << m_col
-			  << "\texpected " << GetLexemeString(lexemeEnum) << '\n';
+	m_errorLexeme = GetLexemeString(lexemeEnum);
 }
 
 bool MatchLexeme(std::istream& inputStream, LexemeEnum expected)
@@ -141,9 +140,10 @@ bool Methods::LISTST_RIGHT(std::istream& inputStream)
 
 bool Methods::IDLIST(std::istream& in)
 {
+	SkipWhitespaces(in);
 	if (!MatchLexeme(in, LexemeEnum::ID))
 	{
-		std::cout << m_line << ':' << m_col << "expected 'id'";
+		std::cout << m_line << ':' << m_col << " expected 'id'";
 		return false;
 	}
 
@@ -168,7 +168,7 @@ bool Methods::IDLIST_RIGHT(std::istream& in)
 	SkipWhitespaces(in);
 	if (!MatchLexeme(in, LexemeEnum::ID))
 	{
-		std::cout << m_line << ':' << m_col << "expected 'id'";
+		std::cout << m_line << ':' << m_col << " expected 'id'";
 		return false;
 	}
 	m_col += GetLexemeLength(LexemeEnum::ID);
@@ -389,7 +389,11 @@ bool Methods::F(std::istream& inputStream)
 				{
 					return false;
 				}
+
+				return true;
 			}
+
+			return true;
 		}
 
 		if (!Methods::EXP(inputStream))
@@ -401,6 +405,8 @@ bool Methods::F(std::istream& inputStream)
 		{
 			return false;
 		}
+
+		return true;
 	}
 	SkipWhitespaces(inputStream);
 	if (!Methods::F(inputStream))
@@ -430,4 +436,9 @@ void Methods::SkipWhitespaces(std::istream& in)
 size_t Methods::GetLine()
 {
 	return m_line;
+}
+
+std::string Methods::GetLexeme()
+{
+	return m_errorLexeme;
 }

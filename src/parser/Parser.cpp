@@ -12,7 +12,8 @@ bool parser::Parser::Parse()
 
 	if (!success)
 	{
-		std::cout << "FATAL at " << Methods::GetLine() << '\n'; 
+		std::cout << "\nFATAL at " << Methods::GetLine()
+				  << " with lexeme " << Methods::GetLexeme() << '\n'; 
 	}
 
 	return success;
