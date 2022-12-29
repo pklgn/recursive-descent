@@ -33,7 +33,7 @@ static inline bool IEqualStrings(const char* const str1, StringTest&& str2)
 	}));
 }
 
-static inline bool IEqualStrings(const char* const str1, const char* const str2)
+static inline bool IEqualRawStrings(const char* const str1, const char* const str2)
 {
 	const auto str1Size = std::strlen(str1);
 	return ((str1Size == std::strlen(str2)) && std::equal(str1, str1 + str1Size, str2, [](auto& c1, auto& c2) {

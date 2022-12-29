@@ -5,18 +5,18 @@
 
 ```
 <PROG>   -> PROG id<VAR> begin<LISTST> end
-<VAR>    -> VAR<IDLIST>: <TYPE>
+<VAR>    -> VAR<IDLIST>: <TYPE>;
 <IDLIST> -> id<A>
 <A>      -> E | , id<A>
-<LISTST> -> <ST> | <B>
-<B>      -> E | <ST> <B>
+<LISTST> -> <ST><B>
+<B>      -> E | <ST> <B> // <B> == <LISTST_RIGHT>
 <TYPE>   -> int	| float | bool | string
 <ST>     -> <READ> | <WRITE> | <ASSIGN>
 <ASSIGN> -> id := <EXP>;
-<EXP> -> <T> <C>
-<C> -> E | + <T> <C>
-<T> -> <F> <D>
-<D> -> E| * <F> <D>
+<EXP> -> <T><C> // <C> == <EXP_RIGHT>
+<C> -> E | + <T><C>
+<T> -> <F><D>
+<D> -> E| * <F> <D> // <D> == <T_RIGHT>
 <F>      -> -<F> | (<EXP>) | id | num
 <READ>   -> READ(<IDLIST>);
 <WRITE>  -> WRITE(<IDLIST>);
