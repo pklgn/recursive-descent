@@ -271,12 +271,7 @@ bool Methods::WRITE(std::istream& inputStream)
 		return false;
 	}
 
-	if (!ParseLexeme(inputStream, LexemeEnum::SEMICOLON))
-	{
-		return false;
-	}
-
-	return true;
+	return ParseLexeme(inputStream, LexemeEnum::SEMICOLON);
 }
 
 bool Methods::ASSIGN(std::istream& inputStream)
@@ -390,6 +385,8 @@ bool Methods::F(std::istream& inputStream)
 					return false;
 				}
 			}
+
+			return true;
 		}
 
 		if (!Methods::EXP(inputStream))
@@ -401,7 +398,10 @@ bool Methods::F(std::istream& inputStream)
 		{
 			return false;
 		}
+
+		return true;
 	}
+
 	SkipWhitespaces(inputStream);
 	if (!Methods::F(inputStream))
 	{
