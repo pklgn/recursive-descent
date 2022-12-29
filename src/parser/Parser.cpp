@@ -6,19 +6,7 @@ parser::Parser::Parser(std::istream& inputStream): m_inputStream(inputStream)
 {
 }
 
-void parser::Parser::Parse()
+bool parser::Parser::Parse()
 {
-	Position position{
-		0, 0
-	};
-
-	try
-	{
-		Methods::PROG(m_inputStream);
-	}
-	catch (std::exception& e)
-	{
-		std::cout << e.what() << std::endl;
-		throw;
-	}
+	return Methods::PROG(m_inputStream);
 }

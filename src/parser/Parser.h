@@ -10,7 +10,7 @@ class Parser : public IParser
 public:
 	Parser(std::istream&);
 
-	void Parse();
+	bool Parse();
 
 private:
 	std::istream& m_inputStream;

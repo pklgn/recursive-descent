@@ -30,7 +30,6 @@ bool MatchLexeme(std::istream& inputStream, LexemeEnum expected)
 	{
 		inputStream.seekg(-inputStream.gcount(), std::ios_base::cur);
 	}
-	delete actualLexeme; // вот теперь всё гуд
 
 	return areEqual;
 }
@@ -147,7 +146,12 @@ bool Methods::IDLIST(std::istream& in)
 
 	m_col += GetLexemeLength(LexemeEnum::ID);
 
-	IDLIST_RIGHT(in);
+	if (!IDLIST_RIGHT(in))
+	{
+		return false;
+	}
+
+	return true;
 }
 
 bool Methods::IDLIST_RIGHT(std::istream& in)
@@ -166,9 +170,14 @@ bool Methods::IDLIST_RIGHT(std::istream& in)
 	}
 	m_col += GetLexemeLength(LexemeEnum::ID);
 
-	IDLIST_RIGHT(in);
+	if (!IDLIST_RIGHT(in))
+	{
+		return false;
+	}
 	// Я написал IDLIST -- я доволен...
 	// Всем спокойной ночи
+
+	return true;
 }
 
 bool Methods::ST(std::istream& inputStream)
