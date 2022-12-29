@@ -5,18 +5,32 @@ struct Methods
 {
 	Methods() = delete;
 
-	static bool PROG(const ProgramText&, const Position&);
-	static bool VAR(const ProgramText&, const Position&);
-	static bool LISTST(const ProgramText&, const Position&);
-	static bool LISTST_RIGHT(const ProgramText&, const Position&);
-	static bool IDLIST(const ProgramText&, const Position&);
-	static bool IDLIST_RIGHT(const ProgramText&, const Position&);
-	static bool ST(const ProgramText&, const Position&);
-	static bool TYPE(const ProgramText&, const Position&);
-	static bool READ(const ProgramText&, const Position&);
-	static bool WRITE(const ProgramText&, const Position&);
-	static bool ASSIGN(const ProgramText&, const Position&);
-	static bool EXP(const ProgramText&, const Position&);
-	static bool T(const ProgramText&, const Position&);
-	static bool F(const ProgramText&, const Position&);
+	// FIXED: убрать Position&
+	static bool PROG(std::istream&);
+	static bool VAR(std::istream&);
+	static bool LISTST(std::istream&);
+	static bool LISTST_RIGHT(std::istream&);
+	static bool IDLIST(std::istream&);
+	static bool IDLIST_RIGHT(std::istream&);
+	static bool ST(std::istream&);
+	static bool TYPE(std::istream&);
+	static bool READ(std::istream&);
+	static bool WRITE(std::istream&);
+	static bool ASSIGN(std::istream&);
+	static bool EXP(std::istream&);
+	static bool EXP_RIGHT(std::istream&);
+	static bool T(std::istream&);
+	static bool T_RIGHT(std::istream&);
+	static bool F(std::istream&);
+
+	static size_t GetLine();
+	static std::string GetLexeme();
+
+private:
+	static void PrintMismatchError(LexemeEnum lexemeEnum);
+	static bool ParseLexeme(std::istream&, LexemeEnum);
+	static void SkipWhitespaces(std::istream& in);
+	inline static size_t m_line = 1;
+	inline static size_t m_col = 0;
+	inline static std::string m_errorLexeme;
 };

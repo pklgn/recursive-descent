@@ -75,6 +75,9 @@
     <ClCompile Include="src\methods\Methods.cpp">
       <Filter>Source Files\Methods</Filter>
     </ClCompile>
+    <ClCompile Include="src\parser\Parser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\pch.h">
@@ -133,6 +136,9 @@
     </ClInclude>
     <ClInclude Include="src\common\types\MetaTypes.h">
       <Filter>Header Files\Common\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="src\parser\Parser.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
