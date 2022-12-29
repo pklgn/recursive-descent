@@ -141,6 +141,7 @@
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\methods\Methods.cpp" />
+    <ClCompile Include="src\parser\Parser.cpp" />
     <ClCompile Include="src\pch.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -162,6 +163,7 @@
     <ClInclude Include="src\parser\lexeme\token\identifier\TokenIdentifier.h" />
     <ClInclude Include="src\parser\lexeme\token\keyword\TokenKeyword.h" />
     <ClInclude Include="src\parser\lexeme\token\type\TokenType.h" />
+    <ClInclude Include="src\parser\Parser.h" />
     <ClInclude Include="src\pch.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

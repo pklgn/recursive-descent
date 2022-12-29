@@ -34,5 +34,6 @@ const std::unordered_map<LexemeEnum, std::string> LEXEME = {
 	{ LexemeEnum::BEGIN, "begin" },
 	{ LexemeEnum::END, "end" },
 	{ LexemeEnum::VAR, "VAR" },
-	{ LexemeEnum::COLON, ":" }
+	{ LexemeEnum::COLON, ":" },
+	{ LexemeEnum::ID, "id" }
 };
