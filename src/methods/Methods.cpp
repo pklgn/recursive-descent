@@ -2,6 +2,7 @@
 #include <sstream>
 #include <format>
 #include "Methods.h"
+#include "pch.h"
 
 std::string GetLexemeString(LexemeEnum lexeme)
 {
@@ -15,8 +16,8 @@ size_t GetLexemeLength(LexemeEnum lexeme)
 
 void Methods::PrintMismatchError(LexemeEnum lexemeEnum)
 {
-	std::cout << "Mismatch was found in line " << m_line << " and column " << m_col
-			  << "while matching the " << GetLexemeString(lexemeEnum) << "lexeme\n";
+	std::cout << m_line << " : " << m_col
+			  << "\texpected " << GetLexemeString(lexemeEnum) << '\n';
 }
 
 bool MatchLexeme(std::istream& inputStream, LexemeEnum expected)
@@ -24,7 +25,8 @@ bool MatchLexeme(std::istream& inputStream, LexemeEnum expected)
 	auto expectedLexeme = GetLexemeString(expected);
 	char* actualLexeme = new char(); // memory leaks? wtf? почему? юзнул new, delete не вижу
 	inputStream.read(actualLexeme, expectedLexeme.size());
-	bool areEqual = strcmp(expectedLexeme.c_str(), actualLexeme);
+	actualLexeme[expectedLexeme.size()] = '\0';
+	bool areEqual = common::string::util::IEqualRawStrings(actualLexeme, expectedLexeme.c_str());
 
 	if (!areEqual)
 	{
@@ -64,7 +66,7 @@ bool Methods::PROG(std::istream& inputStream)
 	{
 		return false;
 	}
-
+	SkipWhitespaces(inputStream);
 	if (!ParseLexeme(inputStream, LexemeEnum::BEGIN))
 	{
 		return false;
@@ -75,12 +77,7 @@ bool Methods::PROG(std::istream& inputStream)
 		return false;
 	}
 
-	if (!ParseLexeme(inputStream, LexemeEnum::END))
-	{
-		return false;
-	}
-
-	return true;
+	return ParseLexeme(inputStream, LexemeEnum::END);
 }
 
 bool Methods::VAR(std::istream& inputStream)
@@ -89,8 +86,8 @@ bool Methods::VAR(std::istream& inputStream)
 	{
 		return false;
 	}
-
-	if (!Methods::IDLIST(inputStream))
+	SkipWhitespaces(inputStream);
+	if (!IDLIST(inputStream))
 	{
 		return false;
 	}
@@ -100,7 +97,23 @@ bool Methods::VAR(std::istream& inputStream)
 		return false;
 	}
 
-	if (!Methods::TYPE(inputStream))
+	if (!TYPE(inputStream))
+	{
+		return false;
+	}
+
+	return ParseLexeme(inputStream, LexemeEnum::SEMICOLON);
+}
+
+bool Methods::LISTST(std::istream& inputStream)
+{
+	SkipWhitespaces(inputStream);
+	if (!Methods::ST(inputStream))
+	{
+		return false;
+	}
+	SkipWhitespaces(inputStream);
+	if (!Methods::LISTST_RIGHT(inputStream))
 	{
 		return false;
 	}
@@ -108,26 +121,16 @@ bool Methods::VAR(std::istream& inputStream)
 	return true;
 }
 
-bool Methods::LISTST(std::istream& inputStream)
-{
-	if (!Methods::ST(inputStream))
-	{
-		if (!Methods::LISTST_RIGHT(inputStream))
-		{
-			return false;
-		}
-	}
-
-	return true;
-}
-
 bool Methods::LISTST_RIGHT(std::istream& inputStream)
 {
+	// что делать
+	// кто виноват
 	if (!Methods::ST(inputStream))
 	{
 		// переход по эпсилон
 		return true;
 	}
+	SkipWhitespaces(inputStream);
 	if (!Methods::LISTST_RIGHT(inputStream))
 	{
 		return false;
@@ -278,36 +281,38 @@ bool Methods::WRITE(std::istream& inputStream)
 
 bool Methods::ASSIGN(std::istream& inputStream)
 {
+	SkipWhitespaces(inputStream);
 	if (!ParseLexeme(inputStream, LexemeEnum::ID))
 	{
 		return false;
 	}
-
+	SkipWhitespaces(inputStream);
 	if (!ParseLexeme(inputStream, LexemeEnum::COLONEQUAL))
 	{
 		return false;
 	}
-
+	SkipWhitespaces(inputStream);
 	if (!Methods::EXP(inputStream))
 	{
 		return false;
 	}
-
+	SkipWhitespaces(inputStream);
 	if (!ParseLexeme(inputStream, LexemeEnum::SEMICOLON))
 	{
 		return false;
 	}
-
+	SkipWhitespaces(inputStream);
 	return true;
 }
 
 bool Methods::EXP(std::istream& inputStream)
 {
+	SkipWhitespaces(inputStream);
 	if (!Methods::T(inputStream))
 	{
 		return false;
 	}
-
+	SkipWhitespaces(inputStream);
 	if (!Methods::EXP_RIGHT(inputStream))
 	{
 		return false;
@@ -318,17 +323,18 @@ bool Methods::EXP(std::istream& inputStream)
 
 bool Methods::EXP_RIGHT(std::istream& inputStream)
 {
+	SkipWhitespaces(inputStream);
 	if (!ParseLexeme(inputStream, LexemeEnum::PLUS))
 	{
 		// обработка эпсилон
 		return true;
 	}
-
+	SkipWhitespaces(inputStream);
 	if (!Methods::T(inputStream))
 	{
 		return false;
 	}
-
+	SkipWhitespaces(inputStream);
 	if (!Methods::EXP_RIGHT(inputStream))
 	{
 		return false;
@@ -339,11 +345,12 @@ bool Methods::EXP_RIGHT(std::istream& inputStream)
 
 bool Methods::T(std::istream& inputStream)
 {
+	SkipWhitespaces(inputStream);
 	if (!Methods::F(inputStream))
 	{
 		return false;
 	}
-
+	SkipWhitespaces(inputStream);
 	if (!Methods::T_RIGHT(inputStream))
 	{
 		return false;
@@ -354,27 +361,24 @@ bool Methods::T(std::istream& inputStream)
 
 bool Methods::T_RIGHT(std::istream& inputStream)
 {
+	SkipWhitespaces(inputStream);
 	if (!ParseLexeme(inputStream, LexemeEnum::STAR))
 	{
 		// обработка эпсилон
 		return true;
 	}
-
+	SkipWhitespaces(inputStream);
 	if (!Methods::F(inputStream))
 	{
 		return false;
 	}
-
-	if (!Methods::T_RIGHT(inputStream))
-	{
-		return false;
-	}
-
-	return true;
+	SkipWhitespaces(inputStream);
+	return Methods::T_RIGHT(inputStream);
 }
 
 bool Methods::F(std::istream& inputStream)
 {
+	SkipWhitespaces(inputStream);
 	if (!ParseLexeme(inputStream, LexemeEnum::MINUS))
 	{
 		if (!ParseLexeme(inputStream, LexemeEnum::LEFTPARENTHESIS))
@@ -392,13 +396,13 @@ bool Methods::F(std::istream& inputStream)
 		{
 			return false;
 		}
-
+		SkipWhitespaces(inputStream);
 		if (!ParseLexeme(inputStream, LexemeEnum::RIGHTPARENTHESIS))
 		{
 			return false;
 		}
 	}
-
+	SkipWhitespaces(inputStream);
 	if (!Methods::F(inputStream))
 	{
 		return false;
@@ -415,9 +419,15 @@ void Methods::SkipWhitespaces(std::istream& in)
 		if (ch == '\n')
 		{
 			++m_line;
+			m_col = 1;
 		}
 
 		in.get();
 		++m_col;
 	}
+}
+
+size_t Methods::GetLine()
+{
+	return m_line;
 }

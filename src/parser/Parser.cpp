@@ -8,5 +8,12 @@ parser::Parser::Parser(std::istream& inputStream): m_inputStream(inputStream)
 
 bool parser::Parser::Parse()
 {
-	return Methods::PROG(m_inputStream);
+	bool success = Methods::PROG(m_inputStream);
+
+	if (!success)
+	{
+		std::cout << "FATAL at " << Methods::GetLine() << '\n'; 
+	}
+
+	return success;
 }
