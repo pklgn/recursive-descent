@@ -9,8 +9,8 @@ using namespace parser;
 
 int main(int, char**)
 {
-	std::ifstream inputStream("EXAMPLE.TXT");
-	Parser parser(inputStream);
+	
+	Parser parser(std::cin);
 	bool successParse = parser.Parse();
 
 	if (successParse)
