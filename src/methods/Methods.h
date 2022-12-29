@@ -18,7 +18,9 @@ struct Methods
 	static bool WRITE(std::istream&);
 	static bool ASSIGN(std::istream&);
 	static bool EXP(std::istream&);
+	static bool EXP_RIGHT(std::istream&);
 	static bool T(std::istream&);
+	static bool T_RIGHT(std::istream&);
 	static bool F(std::istream&);
 
 private:

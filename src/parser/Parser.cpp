@@ -14,7 +14,7 @@ void parser::Parser::Parse()
 
 	try
 	{
-		Methods::PROG(m_inputStream, position);
+		Methods::PROG(m_inputStream);
 	}
 	catch (std::exception& e)
 	{
