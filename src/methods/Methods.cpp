@@ -14,18 +14,12 @@ size_t GetLexemeLength(LexemeEnum lexeme)
 	return GetLexemeString(lexeme).size();
 }
 
-void Methods::PrintMismatchError(LexemeEnum lexemeEnum)
-{
-	m_errorLexeme = GetLexemeString(lexemeEnum);
-}
-
 bool MatchLexeme(std::istream& inputStream, LexemeEnum expected)
 {
 	auto expectedLexeme = GetLexemeString(expected);
-	char* actualLexeme = new char(); // memory leaks? wtf? почему? юзнул new, delete не вижу
-	inputStream.read(actualLexeme, expectedLexeme.size());
-	actualLexeme[expectedLexeme.size()] = '\0';
-	bool areEqual = common::string::util::IEqualRawStrings(actualLexeme, expectedLexeme.c_str());
+	std::string actualLexeme(expectedLexeme.size(), 0); // memory leaks? wtf? почему? юзнул new, delete не вижу
+	inputStream.read(actualLexeme.data(), expectedLexeme.size());
+	bool areEqual = common::string::util::IEqualRawStrings(actualLexeme.c_str(), expectedLexeme.c_str());
 
 	if (!areEqual)
 	{
@@ -40,7 +34,7 @@ bool Methods::ParseLexeme(std::istream& inputStream, LexemeEnum lexemeEnum)
 	SkipWhitespaces(inputStream);
 	if (!MatchLexeme(inputStream, lexemeEnum))
 	{
-		PrintMismatchError(lexemeEnum);
+		m_errorLexeme = GetLexemeString(lexemeEnum);
 
 		return false;
 	}

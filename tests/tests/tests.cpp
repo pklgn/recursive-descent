@@ -19,7 +19,7 @@ TEST_CASE("Run positive tests")
 			CHECK(success);
 			if (!success)
 			{
-				WARN("Test fail: SUCCESS_ " + std::to_string(index) + ".TXT");
+				WARN("Test fail: SUCCESS_" + std::to_string(index) + ".TXT");
 			}
 			file.close();
 		}
