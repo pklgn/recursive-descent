@@ -2,6 +2,6 @@ pRog               id
 vAR id                 ,                   id,id         :InT          ;           
               bEGIn
  rEaD   (id,       id )   ; 
-wRIte   (num )   ;
-wRIte   (num    ,        id)   ;
+wRIte   (id )   ;
+wRIte   (id    ,        id)   ;
 enD  
