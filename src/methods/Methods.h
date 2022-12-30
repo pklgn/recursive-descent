@@ -1,5 +1,6 @@
 #pragma once
 #include "common/types/MetaTypes.h"
+#include "pch.h"
 
 struct Methods
 {
