@@ -1,11 +1,12 @@
 #pragma once
 #include "common/types/MetaTypes.h"
+#include "pch.h"
 
 struct Methods
 {
 	Methods() = delete;
 
-	// FIXED: убрать Position&
+	// FIXED: пїЅпїЅпїЅпїЅпїЅпїЅ Position&
 	static bool PROG(std::istream&);
 	static bool VAR(std::istream&);
 	static bool LISTST(std::istream&);
