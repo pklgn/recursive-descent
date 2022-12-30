@@ -6,7 +6,6 @@ struct Methods
 {
 	Methods() = delete;
 
-	// FIXED: ������ Position&
 	static bool PROG(std::istream&);
 	static bool VAR(std::istream&);
 	static bool LISTST(std::istream&);
@@ -24,13 +23,12 @@ struct Methods
 	static bool T_RIGHT(std::istream&);
 	static bool F(std::istream&);
 
-	static size_t GetLine();
-	static std::string GetLexeme();
+	static std::string GetLastErrorMessage();
 
 private:
-	static void PrintMismatchError(LexemeEnum lexemeEnum);
 	static bool ParseLexeme(std::istream&, LexemeEnum);
 	static void SkipWhitespaces(std::istream& in);
+
 	inline static size_t m_line = 1;
 	inline static size_t m_col = 0;
 	inline static std::string m_errorLexeme;

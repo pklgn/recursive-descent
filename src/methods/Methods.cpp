@@ -1,28 +1,12 @@
 ﻿#include <sstream>
 #include "Methods.h"
 
-std::string GetLexemeString(LexemeEnum lexeme)
-{
-	return LEXEME.at(lexeme);
-}
-
-size_t GetLexemeLength(LexemeEnum lexeme)
-{
-	return GetLexemeString(lexeme).size();
-}
-
-void Methods::PrintMismatchError(LexemeEnum lexemeEnum)
-{
-	m_errorLexeme = GetLexemeString(lexemeEnum);
-}
-
 bool MatchLexeme(std::istream& inputStream, LexemeEnum expected)
 {
-	auto expectedLexeme = GetLexemeString(expected);
-	char* actualLexeme = new char(); // memory leaks? wtf? почему? юзнул new, delete не вижу
-	inputStream.read(actualLexeme, expectedLexeme.size());
-	actualLexeme[expectedLexeme.size()] = '\0';
-	bool areEqual = common::string::util::IEqualRawStrings(actualLexeme, expectedLexeme.c_str());
+	auto expectedLexeme = LEXEME.at(expected);
+	std::string actualLexeme(expectedLexeme.size(), 0); // memory leaks? wtf? почему? юзнул new, delete не вижу
+	inputStream.read(actualLexeme.data(), expectedLexeme.size());
+	bool areEqual = common::string::util::IEqualRawStrings(actualLexeme.c_str(), expectedLexeme.c_str());
 
 	if (!areEqual)
 	{
@@ -32,382 +16,141 @@ bool MatchLexeme(std::istream& inputStream, LexemeEnum expected)
 	return areEqual;
 }
 
-bool Methods::ParseLexeme(std::istream& inputStream, LexemeEnum lexemeEnum)
+bool Methods::ParseLexeme(std::istream& inputStream, LexemeEnum lexeme)
 {
 	SkipWhitespaces(inputStream);
-	if (!MatchLexeme(inputStream, lexemeEnum))
+	if (!MatchLexeme(inputStream, lexeme))
 	{
-		PrintMismatchError(lexemeEnum);
+		m_errorLexeme = LEXEME.at(lexeme);
 
 		return false;
 	}
-	m_col += GetLexemeLength(lexemeEnum);
+	m_col += LEXEME.at(lexeme).size();
 
 	return true;
 }
 
 bool Methods::PROG(std::istream& inputStream)
 {
-	if (!ParseLexeme(inputStream, LexemeEnum::PROG))
-	{
-		return false;
-	}
-	
-	if (!ParseLexeme(inputStream, LexemeEnum::ID))
-	{
-		return false;
-	}
-
-	if (!Methods::VAR(inputStream))
-	{
-		return false;
-	}
-	SkipWhitespaces(inputStream);
-	if (!ParseLexeme(inputStream, LexemeEnum::BEGIN))
-	{
-		return false;
-	}
-
-	if (!Methods::LISTST(inputStream))
-	{
-		return false;
-	}
-
-	return ParseLexeme(inputStream, LexemeEnum::END);
+	return 
+		ParseLexeme(inputStream, LexemeEnum::PROG) && 
+		ParseLexeme(inputStream, LexemeEnum::ID) && 
+		VAR(inputStream) && 
+		ParseLexeme(inputStream, LexemeEnum::BEGIN) && 
+		LISTST(inputStream) && 
+		ParseLexeme(inputStream, LexemeEnum::END);
 }
 
 bool Methods::VAR(std::istream& inputStream)
 {
-	if (!ParseLexeme(inputStream, LexemeEnum::VAR))
-	{
-		return false;
-	}
-	SkipWhitespaces(inputStream);
-	if (!IDLIST(inputStream))
-	{
-		return false;
-	}
-
-	if (!ParseLexeme(inputStream, LexemeEnum::COLON))
-	{
-		return false;
-	}
-
-	if (!TYPE(inputStream))
-	{
-		return false;
-	}
-
-	return ParseLexeme(inputStream, LexemeEnum::SEMICOLON);
+	return 
+		ParseLexeme(inputStream, LexemeEnum::VAR) && 
+		IDLIST(inputStream) && 
+		ParseLexeme(inputStream, LexemeEnum::COLON) && 
+		TYPE(inputStream) && 
+		ParseLexeme(inputStream, LexemeEnum::SEMICOLON);
 }
 
 bool Methods::LISTST(std::istream& inputStream)
 {
-	SkipWhitespaces(inputStream);
-	if (!Methods::ST(inputStream))
-	{
-		return false;
-	}
-	SkipWhitespaces(inputStream);
-	if (!Methods::LISTST_RIGHT(inputStream))
-	{
-		return false;
-	}
-
-	return true;
+	return ST(inputStream) && LISTST_RIGHT(inputStream);
 }
 
 bool Methods::LISTST_RIGHT(std::istream& inputStream)
 {
-	// что делать
-	// кто виноват
-	if (!Methods::ST(inputStream))
-	{
-		// переход по эпсилон
-		return true;
-	}
-	SkipWhitespaces(inputStream);
-	if (!Methods::LISTST_RIGHT(inputStream))
-	{
-		return false;
-	}
-
-	return true;
+	// это же гениальная хрень
+	return !ST(inputStream) || LISTST_RIGHT(inputStream);
 }
 
 bool Methods::IDLIST(std::istream& in)
 {
-	SkipWhitespaces(in);
-	if (!MatchLexeme(in, LexemeEnum::ID))
-	{
-		std::cout << m_line << ':' << m_col << " expected 'id'";
-		return false;
-	}
-
-	m_col += GetLexemeLength(LexemeEnum::ID);
-
-	if (!IDLIST_RIGHT(in))
-	{
-		return false;
-	}
-
-	return true;
+	return ParseLexeme(in, LexemeEnum::ID) && IDLIST_RIGHT(in);
 }
 
 bool Methods::IDLIST_RIGHT(std::istream& in)
 {
-	SkipWhitespaces(in);
-	if (!MatchLexeme(in, LexemeEnum::COMMA))
-	{
-		// тут так, потому что есть переход по эпсилон
-		return true;
-	}
-	SkipWhitespaces(in);
-	if (!MatchLexeme(in, LexemeEnum::ID))
-	{
-		std::cout << m_line << ':' << m_col << " expected 'id'";
-		return false;
-	}
-	m_col += GetLexemeLength(LexemeEnum::ID);
-
-	if (!IDLIST_RIGHT(in))
-	{
-		return false;
-	}
-	// Я написал IDLIST -- я доволен...
-	// Всем спокойной ночи
-
-	return true;
+	return 
+		!ParseLexeme(in, LexemeEnum::COMMA) || 
+		(ParseLexeme(in, LexemeEnum::ID) && IDLIST_RIGHT(in));
 }
 
 bool Methods::ST(std::istream& inputStream)
 {
-	if (!Methods::READ(inputStream))
-	{
-		if (!Methods::WRITE(inputStream))
-		{
-			if (!Methods::ASSIGN(inputStream))
-			{
-				return false;
-			}
-		}
-	}
-
-	return true;
+	return 
+		READ(inputStream) || 
+		WRITE(inputStream) ||
+		ASSIGN(inputStream);
 }
 
 bool Methods::TYPE(std::istream& inputStream)
 {
-	if (!ParseLexeme(inputStream, LexemeEnum::INT))
-	{
-		if (!ParseLexeme(inputStream, LexemeEnum::FLOAT))
-		{
-			if (!ParseLexeme(inputStream, LexemeEnum::BOOL))
-			{
-				if (!ParseLexeme(inputStream, LexemeEnum::STRING))
-				{
-					return false;
-				}
-			}
-
-		}
-	}
-
-	return true;
+	return 
+		ParseLexeme(inputStream, LexemeEnum::INT) || 
+		ParseLexeme(inputStream, LexemeEnum::FLOAT) || 
+		ParseLexeme(inputStream, LexemeEnum::BOOL) || 
+		ParseLexeme(inputStream, LexemeEnum::STRING);
 }
 
 bool Methods::READ(std::istream& inputStream)
 {
-	if (!ParseLexeme(inputStream, LexemeEnum::READ))
-	{
-		return false;
-	}
-
-	if (!ParseLexeme(inputStream, LexemeEnum::LEFTPARENTHESIS))
-	{
-		return false;
-	}
-
-	if (!Methods::IDLIST(inputStream))
-	{
-		return false;
-	}
-
-	if (!ParseLexeme(inputStream, LexemeEnum::RIGHTPARENTHESIS))
-	{
-		return false;
-	}
-
-	if (!ParseLexeme(inputStream, LexemeEnum::SEMICOLON))
-	{
-		return false;
-	}
-
-	return true;
+	return 
+		ParseLexeme(inputStream, LexemeEnum::READ) && 
+		ParseLexeme(inputStream, LexemeEnum::LEFTPARENTHESIS) && 
+		IDLIST(inputStream) && 
+		ParseLexeme(inputStream, LexemeEnum::RIGHTPARENTHESIS) && 
+		ParseLexeme(inputStream, LexemeEnum::SEMICOLON);
 }
 
 bool Methods::WRITE(std::istream& inputStream)
 {
-	if (!ParseLexeme(inputStream, LexemeEnum::WRITE))
-	{
-		return false;
-	}
-
-	if (!ParseLexeme(inputStream, LexemeEnum::LEFTPARENTHESIS))
-	{
-		return false;
-	}
-
-	if (!Methods::IDLIST(inputStream))
-	{
-		return false;
-	}
-
-	if (!ParseLexeme(inputStream, LexemeEnum::RIGHTPARENTHESIS))
-	{
-		return false;
-	}
-
-	return ParseLexeme(inputStream, LexemeEnum::SEMICOLON);
+	return 
+		ParseLexeme(inputStream, LexemeEnum::WRITE) && 
+		ParseLexeme(inputStream, LexemeEnum::LEFTPARENTHESIS) && 
+		IDLIST(inputStream) && 
+		ParseLexeme(inputStream, LexemeEnum::RIGHTPARENTHESIS) && 
+		ParseLexeme(inputStream, LexemeEnum::SEMICOLON);
 }
 
 bool Methods::ASSIGN(std::istream& inputStream)
 {
-	SkipWhitespaces(inputStream);
-	if (!ParseLexeme(inputStream, LexemeEnum::ID))
-	{
-		return false;
-	}
-	SkipWhitespaces(inputStream);
-	if (!ParseLexeme(inputStream, LexemeEnum::COLONEQUAL))
-	{
-		return false;
-	}
-	SkipWhitespaces(inputStream);
-	if (!Methods::EXP(inputStream))
-	{
-		return false;
-	}
-	SkipWhitespaces(inputStream);
-	if (!ParseLexeme(inputStream, LexemeEnum::SEMICOLON))
-	{
-		return false;
-	}
-	SkipWhitespaces(inputStream);
-	return true;
+	return 
+		ParseLexeme(inputStream, LexemeEnum::ID) && 
+		ParseLexeme(inputStream, LexemeEnum::COLONEQUAL) && 
+		EXP(inputStream) && 
+		ParseLexeme(inputStream, LexemeEnum::SEMICOLON);
 }
 
 bool Methods::EXP(std::istream& inputStream)
 {
-	SkipWhitespaces(inputStream);
-	if (!Methods::T(inputStream))
-	{
-		return false;
-	}
-	SkipWhitespaces(inputStream);
-	if (!Methods::EXP_RIGHT(inputStream))
-	{
-		return false;
-	}
-
-	return true;
+	return T(inputStream) && EXP_RIGHT(inputStream);
 }
 
 bool Methods::EXP_RIGHT(std::istream& inputStream)
 {
-	SkipWhitespaces(inputStream);
-	if (!ParseLexeme(inputStream, LexemeEnum::PLUS))
-	{
-		// обработка эпсилон
-		return true;
-	}
-	SkipWhitespaces(inputStream);
-	if (!Methods::T(inputStream))
-	{
-		return false;
-	}
-	SkipWhitespaces(inputStream);
-	if (!Methods::EXP_RIGHT(inputStream))
-	{
-		return false;
-	}
-
-	return true;
+	return 
+		!ParseLexeme(inputStream, LexemeEnum::PLUS) || 
+		(T(inputStream) && EXP_RIGHT(inputStream));
 }
 
 bool Methods::T(std::istream& inputStream)
 {
-	SkipWhitespaces(inputStream);
-	if (!Methods::F(inputStream))
-	{
-		return false;
-	}
-	SkipWhitespaces(inputStream);
-	if (!Methods::T_RIGHT(inputStream))
-	{
-		return false;
-	}
-
-	return true;
+	return F(inputStream) && T_RIGHT(inputStream);
 }
 
 bool Methods::T_RIGHT(std::istream& inputStream)
 {
-	SkipWhitespaces(inputStream);
-	if (!ParseLexeme(inputStream, LexemeEnum::STAR))
-	{
-		// обработка эпсилон
-		return true;
-	}
-	SkipWhitespaces(inputStream);
-	if (!Methods::F(inputStream))
-	{
-		return false;
-	}
-	SkipWhitespaces(inputStream);
-	return Methods::T_RIGHT(inputStream);
+	return 
+		!ParseLexeme(inputStream, LexemeEnum::STAR) || 
+		(F(inputStream) && Methods::T_RIGHT(inputStream));
 }
 
 bool Methods::F(std::istream& inputStream)
 {
-	SkipWhitespaces(inputStream);
-	if (!ParseLexeme(inputStream, LexemeEnum::MINUS))
-	{
-		if (!ParseLexeme(inputStream, LexemeEnum::LEFTPARENTHESIS))
-		{
-			if (!ParseLexeme(inputStream, LexemeEnum::ID))
-			{
-				if (!ParseLexeme(inputStream, LexemeEnum::NUM))
-				{
-					return false;
-				}
-
-				return true;
-			}
-
-			return true;
-		}
-
-		if (!Methods::EXP(inputStream))
-		{
-			return false;
-		}
-		SkipWhitespaces(inputStream);
-		if (!ParseLexeme(inputStream, LexemeEnum::RIGHTPARENTHESIS))
-		{
-			return false;
-		}
-
-		return true;
-	}
-
-	SkipWhitespaces(inputStream);
-	if (!Methods::F(inputStream))
-	{
-		return false;
-	}
-
-	return true;
+	return 
+		(ParseLexeme(inputStream, LexemeEnum::MINUS) && F(inputStream)) || 
+		(ParseLexeme(inputStream, LexemeEnum::LEFTPARENTHESIS) && EXP(inputStream) && ParseLexeme(inputStream, LexemeEnum::RIGHTPARENTHESIS)) || 
+		ParseLexeme(inputStream, LexemeEnum::ID) || 
+		ParseLexeme(inputStream, LexemeEnum::NUM);
 }
 
 void Methods::SkipWhitespaces(std::istream& in)
@@ -426,12 +169,9 @@ void Methods::SkipWhitespaces(std::istream& in)
 	}
 }
 
-size_t Methods::GetLine()
+std::string Methods::GetLastErrorMessage()
 {
-	return m_line;
-}
-
-std::string Methods::GetLexeme()
-{
-	return m_errorLexeme;
+	std::ostringstream stream;
+	stream << "FATAL at " << m_line << ':' << m_col << " with lexeme " << m_errorLexeme;
+	return stream.str();
 }
