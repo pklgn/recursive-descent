@@ -3,7 +3,7 @@
 
 enum class LexemeEnum
 {
-	ID = 0,
+	ID,
 	NUM,
 
 	BOOL,

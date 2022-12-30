@@ -1,6 +1,4 @@
 ﻿#include <sstream>
-#include <format>
-
 #include "Methods.h"
 
 bool MatchLexeme(std::istream& inputStream, LexemeEnum expected)
