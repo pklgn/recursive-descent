@@ -1,6 +1,6 @@
 #pragma once
 
 #include "delimeter/TokenDelimeter.h"
-#include "identifier/TokenIdentifier.h"
+#include "special/TokenSpecial.h"
 #include "keyword/TokenKeyword.h"
 #include "type/TokenType.h"

@@ -156,13 +156,15 @@
     <ClInclude Include="src\parser\lexeme\CLexeme\CLexeme.hpp" />
     <ClInclude Include="src\parser\lexeme\exception\ILexemeException.h" />
     <ClInclude Include="src\parser\lexeme\exception\CException\LexemeException.hpp" />
-    <ClInclude Include="src\parser\lexeme\token\all.h" />
-    <ClInclude Include="src\parser\lexeme\token\BaseToken.h" />
-    <ClInclude Include="src\parser\lexeme\token\delimeter\TokenDelimeter.h" />
-    <ClInclude Include="src\parser\lexeme\token\enum\TokenEnum.hpp" />
-    <ClInclude Include="src\parser\lexeme\token\identifier\TokenIdentifier.h" />
-    <ClInclude Include="src\parser\lexeme\token\keyword\TokenKeyword.h" />
-    <ClInclude Include="src\parser\lexeme\token\type\TokenType.h" />
+    <ClInclude Include="src\parser\lexeme\token\definitions\op\TokenOperator.h" />
+    <ClInclude Include="src\parser\lexeme\token\definitions\special\TokenSpecial.h" />
+    <ClInclude Include="src\parser\lexeme\token\definitions\token_definitions.h" />
+    <ClInclude Include="src\parser\lexeme\token\definitions\BaseToken.h" />
+    <ClInclude Include="src\parser\lexeme\token\definitions\delimeter\TokenDelimeter.h" />
+    <ClInclude Include="src\parser\lexeme\token\definitions\enum\TokenEnum.hpp" />
+    <ClInclude Include="src\parser\lexeme\token\identifier\TokenSpecial.h" />
+    <ClInclude Include="src\parser\lexeme\token\definitions\keyword\TokenKeyword.h" />
+    <ClInclude Include="src\parser\lexeme\token\definitions\type\TokenType.h" />
     <ClInclude Include="src\parser\Parser.h" />
     <ClInclude Include="src\pch.h" />
   </ItemGroup>

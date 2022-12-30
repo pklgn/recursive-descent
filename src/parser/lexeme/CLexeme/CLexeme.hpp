@@ -4,8 +4,8 @@
 
 #include "parser/common_parser.h"
 
-#include "../token/all.h"
-#include "../token/enum/TokenEnum.hpp"
+#include "../token/definitions/token_definitions.h"
+#include "../token/definitions/enum/TokenEnum.hpp"
 
 namespace parser::lexeme
 {
@@ -33,17 +33,17 @@ template <typename T>
 inline ::std::string parser::lexeme::CLexeme<T>::GetTokenType()
 {
 	using namespace token::delimeter;
-	using namespace token::identifier;
+	using namespace token::special;
 	using namespace token::keyword;
 	using namespace token::type;
 
 	using token::TokenEnum;
 
-	if constexpr (std::is_same_v<T, TokenIdentificatorId>)
+	if constexpr (std::is_same_v<T, TokenIdentifier>)
 	{
 		return TokenEnumToString(TokenEnum::ID);
 	}
-	if constexpr (std::is_same_v<T, TokenIdentificatorNum>)
+	if constexpr (std::is_same_v<T, TokenNum>)
 	{
 		return TokenEnumToString(TokenEnum::NUM);
 	}
