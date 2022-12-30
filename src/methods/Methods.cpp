@@ -1,8 +1,5 @@
-﻿#include "pch.h"
-#include <sstream>
-#include <format>
+﻿#include <sstream>
 #include "Methods.h"
-#include "pch.h"
 
 std::string GetLexemeString(LexemeEnum lexeme)
 {
