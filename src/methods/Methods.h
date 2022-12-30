@@ -23,8 +23,7 @@ struct Methods
 	static bool T_RIGHT(std::istream&);
 	static bool F(std::istream&);
 
-	static size_t GetLine();
-	static std::string GetLexeme();
+	static std::string GetLastErrorMessage();
 
 private:
 	static void PrintMismatchError(LexemeEnum lexemeEnum);
