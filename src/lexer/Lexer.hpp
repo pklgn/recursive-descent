@@ -17,8 +17,8 @@ struct Lexer
 		std::string actualValue;
 		ctx.lastExpectedToken = expectedValue;
 
-		size_t index = 0;
-		for (; stream && index < expectedValue.size(); ++index)
+		size_t readCount = 0;
+		for (; stream.good() && readCount < expectedValue.size(); ++readCount)
 		{
 			char ch;
 			stream.get(ch);
@@ -30,10 +30,16 @@ struct Lexer
 
 		bool equal = expectedValue == actualValue;
 
+		if (!stream.good())
+		{
+			stream.clear();
+			++readCount;
+		}
+
 		if (!equal)
-			stream.seekg(-static_cast<int>(index), std::ios_base::cur);
+			stream.seekg(-static_cast<int>(readCount), std::ios_base::cur);
 		else
-			ctx.col += index;
+			ctx.col += readCount;
 
 		return equal;
 	}
