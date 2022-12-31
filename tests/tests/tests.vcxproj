@@ -129,17 +129,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\methods\Methods.cpp" />
     <ClCompile Include="..\..\src\parser\Parser.cpp" />
     <ClCompile Include="catch_main.cpp" />
     <ClCompile Include="tests.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\common\constants\Lexeme.h" />
-    <ClInclude Include="..\..\src\common\string\util.hpp" />
-    <ClInclude Include="..\..\src\methods\Methods.h" />
     <ClInclude Include="..\..\src\parser\Parser.h" />
-    <ClInclude Include="..\..\src\pch.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

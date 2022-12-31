@@ -24,27 +24,12 @@
     <ClCompile Include="tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\methods\Methods.cpp">
-      <Filter>Parser</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\parser\Parser.cpp">
       <Filter>Parser</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\pch.h">
-      <Filter>Parser</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\methods\Methods.h">
-      <Filter>Parser</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\parser\Parser.h">
-      <Filter>Parser</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\common\constants\Lexeme.h">
-      <Filter>Parser</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\common\string\util.hpp">
       <Filter>Parser</Filter>
     </ClInclude>
   </ItemGroup>

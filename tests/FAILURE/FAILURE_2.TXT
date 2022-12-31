@@ -2,4 +2,4 @@ PROG _id_
 VAR id, id, id : int;
 BEGIN
 READ(id,id);
-END  
+END

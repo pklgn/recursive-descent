@@ -4,4 +4,4 @@ vAR id                 ,                   id,id         :InT          ;
  rEaD   (id,       id )   ; 
 wRIte   (id )   ;
 wRIte   (id    ,        id)   ;
-enD  
+enD

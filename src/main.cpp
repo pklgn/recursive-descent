@@ -1,15 +1,10 @@
-#include "pch.h"
-
-#include "parser/lexeme/CLexeme/CLexeme.hpp"
-#include "parser/lexeme/exception/CException/LexemeException.hpp"
-#include "parser/lexeme/token/all.h"
+#include "token/definitions/definitions.h"
 #include "parser/Parser.h"
 
 using namespace parser;
 
-int main(int, char**)
+int main()
 {
-	
 	Parser parser(std::cin);
 	bool successParse = parser.Parse();
 
