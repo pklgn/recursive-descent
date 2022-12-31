@@ -1,7 +1,3 @@
-#include "pch.h"
-
-#include "parser/lexeme/CLexeme/CLexeme.hpp"
-#include "parser/lexeme/exception/CException/LexemeException.hpp"
 #include "token/definitions/definitions.h"
 #include "parser/Parser.h"
 

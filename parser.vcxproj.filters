@@ -69,32 +69,11 @@
     <ClCompile Include="src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\pch.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\methods\Methods.cpp">
-      <Filter>Source Files\Methods</Filter>
-    </ClCompile>
     <ClCompile Include="src\parser\Parser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\pch.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\parser\IParser_fwd.h">
-      <Filter>Header Files\Parser</Filter>
-    </ClInclude>
-    <ClInclude Include="src\parser\IParser.h">
-      <Filter>Header Files\Parser</Filter>
-    </ClInclude>
-    <ClInclude Include="src\parser\common_parser.h">
-      <Filter>Header Files\Parser</Filter>
-    </ClInclude>
-    <ClInclude Include="src\parser\lexeme\CLexeme\CLexeme.hpp">
-      <Filter>Header Files\Parser\Lexeme\CLexeme</Filter>
-    </ClInclude>
     <ClInclude Include="src\token\definitions\definitions.h">
       <Filter>Header Files\Parser\Lexeme\Token</Filter>
     </ClInclude>
@@ -104,9 +83,6 @@
     <ClInclude Include="src\token\definitions\TokenDelimeter.h">
       <Filter>Header Files\Parser\Lexeme\Token\Delimeter</Filter>
     </ClInclude>
-    <ClInclude Include="src\token\definitions\enum\TokenEnum.hpp">
-      <Filter>Header Files\Parser\Lexeme\Token\Enum</Filter>
-    </ClInclude>
     <ClInclude Include="src\parser\lexeme\token\identifier\TokenSpecial.h">
       <Filter>Header Files\Parser\Lexeme\Token\Special</Filter>
     </ClInclude>
@@ -115,27 +91,6 @@
     </ClInclude>
     <ClInclude Include="src\token\definitions\TokenType.h">
       <Filter>Header Files\Parser\Lexeme\Token\Type</Filter>
-    </ClInclude>
-    <ClInclude Include="src\parser\lexeme\exception\ILexemeException.h">
-      <Filter>Header Files\Parser\Lexeme\Exception</Filter>
-    </ClInclude>
-    <ClInclude Include="src\parser\lexeme\exception\CException\LexemeException.hpp">
-      <Filter>Header Files\Parser\Lexeme\Exception\CException</Filter>
-    </ClInclude>
-    <ClInclude Include="src\common\string\util.hpp">
-      <Filter>Header Files\Common\String</Filter>
-    </ClInclude>
-    <ClInclude Include="src\methods\Methods.h">
-      <Filter>Header Files\Methods</Filter>
-    </ClInclude>
-    <ClInclude Include="src\common\constants\Lexeme.h">
-      <Filter>Header Files\Common\Constants</Filter>
-    </ClInclude>
-    <ClInclude Include="src\common\types\BasicTypes.h">
-      <Filter>Header Files\Common\Types</Filter>
-    </ClInclude>
-    <ClInclude Include="src\common\types\MetaTypes.h">
-      <Filter>Header Files\Common\Types</Filter>
     </ClInclude>
     <ClInclude Include="src\parser\Parser.h">
       <Filter>Header Files</Filter>
