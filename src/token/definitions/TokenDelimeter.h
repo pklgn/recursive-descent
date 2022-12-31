@@ -1,10 +1,9 @@
 #pragma once
 
-#include "../BaseToken.h"
+#include "BaseToken.h"
 
-namespace parser::lexeme::token::delimeter
+namespace token
 {
-
 // clang-format off
 
 struct TokenDelimeter : Token {};
@@ -17,4 +16,4 @@ struct Semicolon        : TokenDelimeter {}; // ;
 
 // clang-format on
 
-} // namespace parser::lexeme::token::delimeter
+} // namespace token

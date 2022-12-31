@@ -1,13 +1,13 @@
 #pragma once
 
-#include "../keyword/TokenKeyword.h"
+#include "TokenKeyword.h"
 
-namespace parser::lexeme::token::type
+namespace token
 {
 
 // clang-format off
 
-struct TypeKeyword : keyword::TokenKeyword {};
+struct TypeKeyword : TokenKeyword {};
 
 struct BoolType   : TypeKeyword {}; // bool
 struct FloatType  : TypeKeyword {}; // float
@@ -16,4 +16,4 @@ struct StringType : TypeKeyword {}; // string
 
 // clang-format on
 
-} // namespace parser::lexeme::token::type
+} // namespace token

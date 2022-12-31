@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../BaseToken.h"
+#include "BaseToken.h"
 
-namespace parser::lexeme::token::special
+namespace token
 {
 
 // clang-format off
@@ -11,7 +11,8 @@ struct TokenSpecial : Token {};
 
 struct Identifier  : TokenSpecial {}; // id
 struct Number      : TokenSpecial {}; // num
+struct None        : TokenSpecial {}; //
 
 // clang-format on
 
-} // namespace parser::lexeme::token::identifier
+} // namespace token

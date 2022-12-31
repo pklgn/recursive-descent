@@ -1,6 +1,6 @@
 #pragma once
 
-namespace parser::lexeme::token
+namespace token
 {
 
 // clang-format off
@@ -9,4 +9,4 @@ struct Token {}; // Token == Terminal ?== epsilon?
 
 // clang-format on
 
-} // namespace parser::lexeme::token
+} // namespace token

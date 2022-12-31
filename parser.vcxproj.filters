@@ -95,25 +95,25 @@
     <ClInclude Include="src\parser\lexeme\CLexeme\CLexeme.hpp">
       <Filter>Header Files\Parser\Lexeme\CLexeme</Filter>
     </ClInclude>
-    <ClInclude Include="src\parser\lexeme\token\definitions\token_definitions.h">
+    <ClInclude Include="src\token\definitions\definitions.h">
       <Filter>Header Files\Parser\Lexeme\Token</Filter>
     </ClInclude>
-    <ClInclude Include="src\parser\lexeme\token\definitions\BaseToken.h">
+    <ClInclude Include="src\token\definitions\BaseToken.h">
       <Filter>Header Files\Parser\Lexeme\Token</Filter>
     </ClInclude>
-    <ClInclude Include="src\parser\lexeme\token\definitions\delimeter\TokenDelimeter.h">
+    <ClInclude Include="src\token\definitions\TokenDelimeter.h">
       <Filter>Header Files\Parser\Lexeme\Token\Delimeter</Filter>
     </ClInclude>
-    <ClInclude Include="src\parser\lexeme\token\definitions\enum\TokenEnum.hpp">
+    <ClInclude Include="src\token\definitions\enum\TokenEnum.hpp">
       <Filter>Header Files\Parser\Lexeme\Token\Enum</Filter>
     </ClInclude>
     <ClInclude Include="src\parser\lexeme\token\identifier\TokenSpecial.h">
       <Filter>Header Files\Parser\Lexeme\Token\Special</Filter>
     </ClInclude>
-    <ClInclude Include="src\parser\lexeme\token\definitions\keyword\TokenKeyword.h">
+    <ClInclude Include="src\token\definitions\TokenKeyword.h">
       <Filter>Header Files\Parser\Lexeme\Token\Keyword</Filter>
     </ClInclude>
-    <ClInclude Include="src\parser\lexeme\token\definitions\type\TokenType.h">
+    <ClInclude Include="src\token\definitions\TokenType.h">
       <Filter>Header Files\Parser\Lexeme\Token\Type</Filter>
     </ClInclude>
     <ClInclude Include="src\parser\lexeme\exception\ILexemeException.h">
@@ -140,10 +140,40 @@
     <ClInclude Include="src\parser\Parser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\parser\lexeme\token\definitions\op\TokenOperator.h">
+    <ClInclude Include="src\token\definitions\TokenOperator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\parser\lexeme\token\definitions\special\TokenSpecial.h">
+    <ClInclude Include="src\token\definitions\TokenSpecial.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\token\values\TokenDelimiterValue.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\token\values\TokenValue.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\token\values\TokenKeywordValue.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\token\values\TokenOperatorValue.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\token\values\TokenSpecialValue.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\token\values\TokenTypeValue.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\token\values\values.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\lexer\Lexer.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\parser_context\ParserContext.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\syntax_analyzer\SyntaxAnalyzer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
