@@ -140,29 +140,31 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\methods\Methods.cpp" />
-    <ClCompile Include="src\pch.cpp" />
+    <ClCompile Include="src\parser\Parser.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\common\constants\Lexeme.h" />
-    <ClInclude Include="src\common\string\util.hpp" />
-    <ClInclude Include="src\common\types\BasicTypes.h" />
-    <ClInclude Include="src\common\types\MetaTypes.h" />
-    <ClInclude Include="src\methods\Methods.h" />
-    <ClInclude Include="src\parser\common_parser.h" />
-    <ClInclude Include="src\parser\IParser.h" />
-    <ClInclude Include="src\parser\IParser_fwd.h" />
-    <ClInclude Include="src\parser\lexeme\CLexeme\CLexeme.hpp" />
-    <ClInclude Include="src\parser\lexeme\exception\ILexemeException.h" />
-    <ClInclude Include="src\parser\lexeme\exception\CException\LexemeException.hpp" />
-    <ClInclude Include="src\parser\lexeme\token\all.h" />
-    <ClInclude Include="src\parser\lexeme\token\BaseToken.h" />
-    <ClInclude Include="src\parser\lexeme\token\delimeter\TokenDelimeter.h" />
-    <ClInclude Include="src\parser\lexeme\token\enum\TokenEnum.hpp" />
-    <ClInclude Include="src\parser\lexeme\token\identifier\TokenIdentifier.h" />
-    <ClInclude Include="src\parser\lexeme\token\keyword\TokenKeyword.h" />
-    <ClInclude Include="src\parser\lexeme\token\type\TokenType.h" />
-    <ClInclude Include="src\pch.h" />
+    <ClInclude Include="src\parser_context\ParserContext.hpp" />
+    <ClInclude Include="src\lexer\Lexer.hpp" />
+    <ClInclude Include="src\syntax_analyzer\SyntaxAnalyzer.hpp" />
+    <ClInclude Include="src\token\definitions\TokenOperator.h" />
+    <ClInclude Include="src\token\definitions\TokenSpecial.h" />
+    <ClInclude Include="src\token\definitions\definitions.h" />
+    <ClInclude Include="src\token\definitions\BaseToken.h" />
+    <ClInclude Include="src\token\definitions\TokenDelimeter.h" />
+    <ClInclude Include="src\parser\lexeme\token\identifier\TokenSpecial.h" />
+    <ClInclude Include="src\token\definitions\TokenKeyword.h" />
+    <ClInclude Include="src\token\definitions\TokenType.h" />
+    <ClInclude Include="src\token\values\TokenDelimiterValue.hpp" />
+    <ClInclude Include="src\token\values\TokenKeywordValue.hpp" />
+    <ClInclude Include="src\token\values\TokenOperatorValue.hpp" />
+    <ClInclude Include="src\token\values\TokenSpecialValue.hpp" />
+    <ClInclude Include="src\token\values\TokenTypeValue.hpp" />
+    <ClInclude Include="src\token\values\TokenValue.hpp" />
+    <ClInclude Include="src\token\values\values.h" />
+    <ClInclude Include="src\parser\Parser.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="README.md" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
