@@ -1,7 +1,0 @@
-pRog               id                    
-vAR id                 ,                   id,id         :InT          ;           
-              bEGIn
- rEaD   (id,       id )   ; 
-wRIte   (id )   ;
-wRIte   (id    ,        id)   ;
-enD

@@ -1,0 +1,5 @@
+PROG id 
+VAR id, _id, id : int;
+BEGIN
+READ(id,id);
+END

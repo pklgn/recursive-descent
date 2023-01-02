@@ -1,5 +1,0 @@
-pRoG id
-VaR id, id, id: int;
-BeGIN
-REaD(id, id);
-EnD
