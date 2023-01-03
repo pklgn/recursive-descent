@@ -2,25 +2,31 @@
 
 #include <iostream>
 #include <string>
-#include <algorithm>
 
-#include "token/definitions/definitions.h"
-#include "token/values/values.h"
-#include "parser_context/ParserContext.hpp"
+#include "../context/ParserContext.h"
+#include "../token/definitions/definitions.h"
+#include "../token/values/values.h"
 
-struct Lexer
+namespace parser::lexer
 {
+
+class Lexer
+{
+public:
+	using InputStreamR = std::istream&;
+	using ParserContext = parser::context::ParserContext;
+
 	template <typename Tok>
-	static bool MatchToken(std::istream& stream, ParserContext& ctx)
+	static bool MatchToken(InputStreamR stream, ParserContext& ctx)
 	{
 		const std::string expectedValue = token::Value<Tok>();
-		std::string actualValue;
+		std::string actualValue{};
 		ctx.lastExpectedToken = expectedValue;
 
 		size_t readCount = 0;
 		for (; stream.good() && readCount < expectedValue.size(); ++readCount)
 		{
-			char ch;
+			char ch{};
 			stream.get(ch);
 			actualValue.push_back(ch);
 		}
@@ -49,31 +55,15 @@ struct Lexer
 	In this case we avoid execution of unnecessary code of method above
 	*/
 	template <>
-	static bool MatchToken<token::None>(std::istream& stream, ParserContext& ctx)
+	static bool MatchToken<token::None>(InputStreamR stream, ParserContext& ctx)
 	{
 		return true;
 	}
 
-	static void SkipWs(std::istream& stream, ParserContext& ctx)
-	{
-		char ch;
-		while (std::isspace(ch = stream.peek()))
-		{
-			if (ch == '\n')
-			{
-				++ctx.line;
-				ctx.col = 1;
-			}
-
-			stream.get();
-			++ctx.col;
-		}
-	}
+	static void SkipWs(InputStreamR stream, ParserContext& ctx);
 
 private:
-	static void StrToLower(std::string& str)
-	{
-		std::transform(str.begin(), str.end(), str.begin(),
-			[](unsigned char ch) { return std::tolower(ch); });
-	}
+	static void StrToLower(std::string& str);
 };
+
+} // namespace parser::lexer

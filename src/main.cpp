@@ -1,21 +1,17 @@
-#include "token/definitions/definitions.h"
-#include "parser/Parser.h"
+#include "pch.h"
 
-using namespace parser;
+#include "parser/token/definitions/definitions.h"
+#include "parser/Parser.h"
 
 int main()
 {
-	Parser parser(std::cin);
+	using namespace parser;
+
+	Parser parser(std::cin, std::cout);
+
 	bool successParse = parser.Parse();
 
-	if (successParse)
-	{
-		std::cout << "SUCCESS\n";
-	}
-	else
-	{
-		std::cout << "ERROR\n";
-	}
+	std::cout << (successParse ? "SUCCESS" : "ERROR") << std::endl;
 
 	return 0;
 }

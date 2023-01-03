@@ -1,18 +1,30 @@
+#include "pch.h"
+
 #include "Parser.h"
 
-parser::Parser::Parser(std::istream& input): m_input(input)
+#include "syntax_analyzer/SyntaxAnalyzer.h"
+
+namespace parser
+{
+
+Parser::Parser(InputStreamR input, OutputStreamR output)
+	: m_input(input)
+	, m_echoOutput(output)
 {
 }
 
-bool parser::Parser::Parse()
+bool Parser::Parse()
 {
-	bool success = SyntaxAnalyzer::Prog(m_input, m_context);
+	bool success = syntax_analyzer::SyntaxAnalyzer::Prog(m_input, m_context);
 
 	if (!success)
 	{
-		std::cout << "FATAL at " << m_context.line << ':' << m_context.col << std::endl
-				  << "\texpected '" << m_context.lastExpectedToken << "' but '" << m_context.lastParsedToken << "' appeared" << std::endl;
+		m_echoOutput << "FATAL at " << m_context.line << ':' << m_context.col << '\n'
+					 << "\tEXPECTED: '" << m_context.lastExpectedToken << "'" << '\n'
+					 << "\tGOT: '" << m_context.lastParsedToken << std::endl;
 	}
 
 	return success;
 }
+
+} // namespace parser
