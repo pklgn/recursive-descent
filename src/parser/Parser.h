@@ -1,9 +1,8 @@
 #pragma once
 
-#include <istream>
+#include <iostream>
 
-#include "syntax_analyzer/SyntaxAnalyzer.hpp"
-#include "parser_context/ParserContext.hpp"
+#include "context/ParserContext.h"
 
 namespace parser
 {
@@ -11,12 +10,19 @@ namespace parser
 class Parser
 {
 public:
-	Parser(std::istream& input);
+	using InputStreamR = std::istream&;
+	using OutputStreamR = std::ostream&;
+
+	explicit Parser(InputStreamR input, OutputStreamR output = std::cout);
 
 	bool Parse();
 
 private:
-	std::istream& m_input;
-	ParserContext m_context;
+	using Context = context::ParserContext;
+
+	InputStreamR m_input;
+	OutputStreamR m_echoOutput;
+	Context m_context;
 };
+
 } // namespace parser

@@ -236,3 +236,8 @@ _Pvt_Extensions
 .fake/
 
 *.VC.db
+
+# CMake
+CMakeFiles/*
+build/*
+out/*

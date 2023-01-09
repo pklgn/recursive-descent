@@ -1,5 +1,0 @@
-PROG id 
-VAR id, id, id: int
-BEGIN
-READ(num,id);
-END

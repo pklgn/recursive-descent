@@ -1,0 +1,5 @@
+﻿#pragma once
+
+#define TEST_CASES_DIR "${CMAKE_CURRENT_SOURCE_DIR}/test_cases"
+#define TEST_CASES_SUCCESS_DIR "${CMAKE_CURRENT_SOURCE_DIR}/test_cases/success"
+#define TEST_CASES_FAILURE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/test_cases/failure"
